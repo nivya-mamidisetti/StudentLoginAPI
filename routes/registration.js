@@ -8,6 +8,7 @@ let createNewUser = (data) => {
         if (isEmailExist) {
             reject(`This email "${data.email}" has already exist. Please choose an other email`);
         } else {
+            // Passwords need to be encrypted before saving to database and should be decrypted and compared if the entered password is correct.
             let userItem = {
                 fullname: data.fullname,
                 rollNumber: data.rollNumber,

@@ -3,12 +3,24 @@ var router = express.Router();
 var db = require('../database/connect');
 
 
-router.get('/studentDetails', function(req, res, next) {
-    var sql='SELECT * FROM details';
-    db.mysqlConnection.query(sql, function (err, data, fields) {
-    if (err) throw err;
-    res.render('studentDetails', { title: 'Students List', userData: data});
+findUserById = function(studentId) {
+  return new Promise((resolve, reject) => {
+      try {
+          db.mysqlConnection.query(
+              ' SELECT * FROM `details` WHERE `id` = ?', [studentId],
+              function(err, rows) {
+                  if (err) {
+                      reject(err)
+                  }
+                  resolve(rows);
+              }
+          );
+      } catch (err) {
+          reject(err);
+      }
   });
-});
+};
 
-module.exports = router;
+module.exports = {
+  findUserById
+};

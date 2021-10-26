@@ -1,3 +1,5 @@
+//Ideally .env file should be created to store the database details
+
 const mysql = require('mysql');
 
 // Connection String to Database  

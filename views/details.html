@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Details Page</title>
     <meta charset="UTF-8">
@@ -7,33 +8,58 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script type='text/javascript'>
+        function addFields() {
+            // Number of inputs to create
+            var number = document.getElementById("standard").value;
+            // Container <div> where dynamic content will be placed
+            var container = document.getElementById("container");
+            // Clear previous contents of the container
+            while (container.hasChildNodes()) {
+                container.removeChild(container.lastChild);
+            }
+            for (i = 1; i < number; i++) {
+                // Append a node with a random text
+                container.appendChild(document.createTextNode("Standard " + (i)));
+                // Create an <input> element, set its type and name attributes
+                var input = document.createElement("input");
+                input.type = "text";
+                input.name = "Remark";
+                container.appendChild(document.createTextNode(" Remark "));
+                container.appendChild(document.createElement("br"));
+                container.appendChild(input);
+                container.appendChild(document.createElement("br"));
+                var input = document.createElement("input");
+                input.type = "text";
+                input.name = "Percentage";
+                container.appendChild(document.createTextNode(" Percentage "));
+                container.appendChild(document.createElement("br"));
+                container.appendChild(input);
+                // Append a line break 
+                container.appendChild(document.createElement("br"));
+            }
+        }
+    </script>
 </head>
 <body>
-<div class="container">
     <div class="container">
-        <div class="row mt-5">
-            <div class="col-5 mt-2">
-                <form method="POST" action="/details">
-                    <div class="form-group">
-                        <label for="standard">Standard</label>
-                        <input type="text" class="form-control" name="standard" id="standard" placeholder="standard" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="remark">Remark</label>
-                        <input type="remark" class="form-control" name="remark" id="remark" placeholder="remark" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="percentage">Percentage</label>
-                        <input type="percentage" name="percentage" class="form-control" id="percentage" placeholder="percentage" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Add details</button>
-                </form>
-                <hr>
-                <br><br>
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col-5 mt-2">
+                    <form method="POST" action="/details">
+                        <input type="text" id="standard" name="standard" value="">Enter current standard:<br />
+                        <a href="#" id="filldetails" onclick="addFields()">Fill Details</a>
+                        <div id="container"></div>
+                        <div class=Center align='center'>
+                            <button class='btn-success'>Submit</button>
+                        </div>
+                    </form>
+                    <br><br>
+                </div>
             </div>
         </div>
     </div>
-</div>
 </body>
 </html>
