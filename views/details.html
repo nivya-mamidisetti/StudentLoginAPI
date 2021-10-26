@@ -13,7 +13,7 @@
     <script type='text/javascript'>
         function addFields() {
             // Number of inputs to create
-            var number = document.getElementById("standard").value;
+            var number = document.getElementById("currentStandard").value;
             // Container <div> where dynamic content will be placed
             var container = document.getElementById("container");
             // Clear previous contents of the container
@@ -49,7 +49,7 @@
             <div class="row mt-5">
                 <div class="col-5 mt-2">
                     <form method="POST" action="/details">
-                        <input type="text" id="standard" name="standard" value="">Enter current standard:<br />
+                        <input type="text" id="currentStandard" name="currentStandard" value="">Enter current standard:<br />
                         <a href="#" id="filldetails" onclick="addFields()">Fill Details</a>
                         <div id="container"></div>
                         <div class=Center align='center'>

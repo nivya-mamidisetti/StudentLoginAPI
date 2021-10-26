@@ -11,7 +11,10 @@ let createNewUser = async (req, res) => {
         currentStandard: req.body.currentStandard
     };
     try {
-        await registration.createNewUser(newUser);
+        await registration.createNewUser(newUser)
+        .then((response) => {
+            //console.log(response)
+        })
         return res.redirect("/details");
     } catch (err) {
         return res.redirect("/register");

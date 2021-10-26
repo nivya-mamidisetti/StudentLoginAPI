@@ -3,7 +3,8 @@ var db = require('../database/connect')
 let createNewUser = (data) => {
     return new Promise(async (resolve, reject) => {
         
-        // check email is exist or not
+        // check email exists or not
+
         let isEmailExist = await checkExistEmail(data.email);
         if (isEmailExist) {
             reject(`This email "${data.email}" has already exist. Please choose an other email`);
@@ -18,13 +19,14 @@ let createNewUser = (data) => {
             };
 
             //create a new account
+            
             db.mysqlConnection.query(
                 ' INSERT INTO students set ? ', userItem,
                 function(err, rows) {
                     if (err) {
                         reject(false)
                     }
-                    resolve("Create a new user successful");
+                    resolve(rows.insertId)
                 }
             );
         }

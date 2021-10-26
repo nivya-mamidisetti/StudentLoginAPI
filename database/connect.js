@@ -3,6 +3,7 @@
 const mysql = require('mysql');
 
 // Connection String to Database  
+
 var mysqlConnection = mysql.createConnection({  
     host: 'localhost',  
     user : 'root',  
@@ -12,6 +13,7 @@ var mysqlConnection = mysql.createConnection({
 });  
   
 // To check whether the connection is succeed for Failed while running the project in console.  
+
 mysqlConnection.connect((err) => {  
     if(!err) {  
         console.log("Db Connection Succeed");  

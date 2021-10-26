@@ -5,10 +5,10 @@ var session = require('express-session');
 var path = require('path');
 const bodyParser = require('body-parser');
 var db = require('./database/connect')
-var registrationRouter = require('./routes/registration');
 var registerController = require('./controllers/registrationController')
 var detailsController = require('./controllers/detailsController');
 var studentDetails = require('./routes/students');
+
 const { body } = require('express-validator');
 
 app.use(session({
@@ -65,7 +65,7 @@ app.get('/student-details', (req, res) => {
 });
 
 
-//Register
+//Register a new student
 
 app.get('/register', function (req, res) {
 	res.sendFile(path.join(__dirname + '/views/register.html'));
@@ -74,25 +74,17 @@ app.get('/register', function (req, res) {
 app.post("/register", registerController.createNewUser);
 
 
-//Post Student details after registration
+//Post Student details after registration (This is still in progress)
 
 app.get('/details', function (req, res) {
 	res.sendFile(path.join(__dirname + '/views/details.html'));
 });
 
-// app.post("/details", function(req,res) {
-// 	db.mysqlConnection.query("INSERT INTO DETAILS (REMARK, PERCENTAGE)" + 
-// 	"VALUES (@REMARK, @PERCENTAGE)",
-// 	{
-// 		remark: body.remark,
-// 		percentage: body.percentage,
-// 	});
-// 	res.end("Added details!")
-// });
+app.post("/details", detailsController.previousStandardDetails);
 
 
 
-//Get 20 random students details   
+//Get 20 random students details in JSON format
 
 app.get('/students', (req, res) => {
 	db.mysqlConnection.query('SELECT * FROM students ORDER BY RAND() LIMIT 20;', (err, results, fields) => {
